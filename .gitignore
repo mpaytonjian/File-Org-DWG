@@ -1,0 +1,6 @@
+# Regenerable sorted output and logs
+demo_sorted/
+**/Real Estate Organized/
+DWG_organize_log_*.csv
+__pycache__/
+*.pyc
