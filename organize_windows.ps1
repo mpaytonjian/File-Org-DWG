@@ -38,24 +38,44 @@ $systemExt = @('.lnk','.exe','.msi','.log')
 $imageExt  = @('.jpg','.jpeg','.png','.heic','.jfif','.gif','.bmp','.webp','.tif','.tiff')
 $videoExt  = @('.mp4','.mov','.m4v','.avi')
 
-# ---- Deals (curated from real filenames) ----
+# ---- Deals ----
+# Canonical names mirror the Egnyte "Active AUM Portfolio" folders so a
+# desktop file about a deal lands in a folder named like its Egnyte home.
+# More-specific entries are listed first (order matters for matching).
 $deals = @(
- @{N='Hibbert (Mesa AZ)'; K=@('hibbert')},
- @{N='Moab'; K=@('moab')},
- @{N='Stryten'; K=@('stryten')},
- @{N='Butler Weldments (Project Torch)'; K=@('butler weldments','project torch')},
+ # ----- Egnyte Active AUM portfolio (canonical) -----
+ @{N='1. AirBagIt - Mesa AZ'; K=@('airbagit','airbag')},
+ @{N='2. Austin Iron - TX'; K=@('austin iron')},
+ @{N='3. Buckeye - OH'; K=@('buckeye')},
+ @{N='4. JAL Mossberg'; K=@('mossberg','jal marketing','jal_','jal ')},
+ @{N='5. Lancaster - SC'; K=@('lancaster')},
+ @{N='6. M. Roberts Media - TX'; K=@('roberts media','m. roberts','m roberts')},
+ @{N='7. Rembrandt - Phoenix'; K=@('rembrandt')},
+ @{N='8. G2 Ozark'; K=@('g2 ozark','ozark')},
+ @{N='9. T&T Machine - OH'; K=@('t&t machine','t and t machine')},
+ @{N='10. Moab'; K=@('moab')},
+ @{N='11. Greenbriar Apartments (Dorado)'; K=@('greenbriar apartment')},
+ @{N='12. Cloverdale (Dorado)'; K=@('cloverdale')},
+ @{N='13. Edgebuilders - WI'; K=@('edgebuilder')},
+ @{N='14. Kecy Metals - MI'; K=@('kecy')},
+ @{N='15. Butler Weldment SLB'; K=@('butler weldment','butler weldments','project torch')},
+ @{N='16. Kalkaska Screw'; K=@('kalkaska')},
+ @{N='17. Breese JAL SAB - IL'; K=@('breese')},
+ @{N='18. Stryten Energy'; K=@('stryten')},
+ @{N='19. Southern Perfection (SPF)'; K=@('southern perfection','spf')},
+ @{N='20. 3754 Wasatch (Personal)'; K=@('wasatch')},
+ @{N='21. 119 Greenbriar (Personal)'; K=@('119 greenbriar','greenbriar st')},
+ # ----- Other deals seen on the desktop (pipeline / legacy / brokerage) -----
+ @{N='Hibbert - Mesa AZ'; K=@('hibbert')},
  @{N='Powertex'; K=@('powertex')},
- @{N='Cloverdale'; K=@('cloverdale')},
  @{N='ANR'; K=@('anr bov','anr is','anr.')},
  @{N='Goodyear'; K=@('goodyear')},
  @{N='Ventura Blvd'; K=@('ventura')},
  @{N='Bronx'; K=@('bronx')},
  @{N='Broadview Apartments'; K=@('broadview')},
  @{N='Ridgeline'; K=@('ridgeline')},
- @{N='Kecy Metals'; K=@('kecy')},
  @{N='Sterling'; K=@('sterling')},
  @{N='Assa Abloy'; K=@('assa abloy')},
- @{N='Austin Iron'; K=@('austin iron')},
  @{N='Gutterman'; K=@('gutterman')},
  @{N='Sisler Properties'; K=@('sisler')},
  @{N='Stuckys'; K=@('stuckys')},
@@ -66,7 +86,6 @@ $deals = @(
  @{N='323 Beach Ave'; K=@('323beach','323 beach')},
  @{N='13129 Sherry Lane'; K=@('sherry_lane','sherry lane')},
  @{N='1275 Sunset'; K=@('1275sunset','1275 sunset')},
- @{N='119 Greenbriar'; K=@('greenbriar')},
  @{N='4115 Zero Street (Fort Smith)'; K=@('zero street','4115 zero')}
 )
 
