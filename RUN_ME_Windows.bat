@@ -2,8 +2,8 @@
 setlocal
 REM ============================================================
 REM   DWG File Organization -- Windows launcher (NO PYTHON NEEDED)
-REM   READ-ONLY. Scans Desktop + Documents and writes ONE report
-REM   into THIS folder. Does NOT rename, move, or delete anything.
+REM   READ-ONLY. Scans Desktop + Documents + Downloads and writes ONE
+REM   report into THIS folder. Does NOT rename, move, or delete anything.
 REM ============================================================
 cd /d "%~dp0"
 

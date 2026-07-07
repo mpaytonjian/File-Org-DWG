@@ -7,12 +7,27 @@
 $ErrorActionPreference = 'Stop'
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 
-# ---- Real Desktop + Documents (OneDrive-aware) ----
+# ---- Resolve the REAL Downloads path (no special-folder enum for it) ----
+function Get-DownloadsPath {
+    $guid = '{374DE290-123F-4565-9164-39C4925E467B}'
+    foreach ($key in @('User Shell Folders','Shell Folders')) {
+        try {
+            $rp = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\$key"
+            $v = (Get-ItemProperty -Path $rp -Name $guid -ErrorAction Stop).$guid
+            if ($v) { return [Environment]::ExpandEnvironmentVariables($v) }
+        } catch {}
+    }
+    return (Join-Path $env:USERPROFILE 'Downloads')
+}
+
+# ---- Real Desktop + Documents + Downloads (OneDrive-aware) ----
 $roots = @()
 foreach($f in @('Desktop','MyDocuments')){
     $p = [Environment]::GetFolderPath($f)
     if($p -and (Test-Path $p)){ $roots += $p }
 }
+$dl = Get-DownloadsPath
+if($dl -and (Test-Path $dl)){ $roots += $dl }
 $roots = $roots | Select-Object -Unique
 
 $destBase = Join-Path ([Environment]::GetFolderPath('Desktop')) 'DWG Organized (Copy - Safe)'

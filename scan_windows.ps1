@@ -9,14 +9,29 @@ param([switch]$Recursive)
 $ErrorActionPreference = 'Stop'
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 
-# ---- Find the REAL Desktop + Documents (handles OneDrive) ----
+# ---- Resolve the REAL Downloads path (no special-folder enum for it) ----
+function Get-DownloadsPath {
+    $guid = '{374DE290-123F-4565-9164-39C4925E467B}'
+    foreach ($key in @('User Shell Folders','Shell Folders')) {
+        try {
+            $rp = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\$key"
+            $v = (Get-ItemProperty -Path $rp -Name $guid -ErrorAction Stop).$guid
+            if ($v) { return [Environment]::ExpandEnvironmentVariables($v) }
+        } catch {}
+    }
+    return (Join-Path $env:USERPROFILE 'Downloads')
+}
+
+# ---- Find the REAL Desktop + Documents + Downloads (handles OneDrive) ----
 $roots = @()
 foreach ($f in @('Desktop','MyDocuments')) {
     $p = [Environment]::GetFolderPath($f)
     if ($p -and (Test-Path $p)) { $roots += $p }
 }
+$dl = Get-DownloadsPath
+if ($dl -and (Test-Path $dl)) { $roots += $dl }
 $roots = $roots | Select-Object -Unique
-if ($roots.Count -eq 0) { Write-Host "Could not locate Desktop/Documents."; exit 1 }
+if ($roots.Count -eq 0) { Write-Host "Could not locate Desktop/Documents/Downloads."; exit 1 }
 
 # ---- Category rules (real-estate) ----
 $rules = @(

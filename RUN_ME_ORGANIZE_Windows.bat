@@ -11,8 +11,8 @@ cd /d "%~dp0"
 echo ============================================================
 echo   DWG File Organization -- SORTER (safe copy mode)
 echo.
-echo   This COPIES your Desktop + Documents files into a new,
-echo   organized folder on your Desktop. It does NOT move,
+echo   This COPIES your Desktop + Documents + Downloads files into a
+echo   new, organized folder on your Desktop. It does NOT move,
 echo   rename, or delete any of your original files.
 echo ============================================================
 echo.
